@@ -28,8 +28,8 @@ function NavBar({
           <Container>
             <Navbar.Brand className="text-start">BookLogue</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+            <Navbar.Collapse className="nav-col-in" id="basic-navbar-nav">
+              <Nav>
                 <Button
                   className="mx-2 btn btn-primary"
                   onClick={() => navigate('/me')}
@@ -44,8 +44,8 @@ function NavBar({
                 </Button>
               </Nav>
 
-              <Nav className="me-auto">
-                <Navbar.Text className="text-start">
+              <Nav>
+                <Navbar.Text className="text-start px-4">
                   Signed in as: {userName}
                 </Navbar.Text>
                 <Button
@@ -69,8 +69,8 @@ function NavBar({
           <Container>
             <Navbar.Brand className="text-start">BookLogue</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+            <Navbar.Collapse className="nav-col" id="basic-navbar-nav">
+              <Nav>
                 <Button
                   className="mx-2"
                   variant="btn btn-outline-primary"

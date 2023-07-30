@@ -2,7 +2,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import Book from './Book';
 
-function AllBooks() {
+function AllBooks({ isLoggedIn }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -38,31 +38,36 @@ function AllBooks() {
           bookType={'all'}
           book={book}
           handleAdd={handleAddToMyBooks}
+          isLoggedIn={isLoggedIn}
         />
       );
     });
   };
 
   return (
-    <Container className="border border-3 border-info-subtle rounded">
+    <Container className="main-container border border-3 border-info-subtle rounded">
       <Row>
         <Col>
           <h3 className="text-center">Recently Added</h3>
         </Col>
       </Row>
       <Row>
-        <Col className="border-end">
-          <p className="text-start px-2">Title</p>
+        <Col>
+          <h4 className="text-center px-2">Title</h4>
         </Col>
         <Col>
-          <p className="text-start px-2">Author</p>
+          <h4 className="text-center px-2">Author</h4>
         </Col>
         <Col>
-          <p className="text-start px-2">Genre</p>
+          <h4 className="text-center px-2">Genre</h4>
         </Col>
-        <Col>
-          <p className="text-start px-2">Add Book</p>
-        </Col>
+        {isLoggedIn ? (
+          <Col>
+            <h4 className="text-center px-2">Add Book</h4>
+          </Col>
+        ) : (
+          <></>
+        )}
       </Row>
       {renderBooks(books)}
     </Container>

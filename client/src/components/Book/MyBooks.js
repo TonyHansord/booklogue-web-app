@@ -3,7 +3,7 @@ import { Row, Col, Container, Button } from 'react-bootstrap';
 import Book from './Book';
 import AddBook from './AddBook';
 
-function MyBooks({ setSelectedBook }) {
+function MyBooks({ setSelectedBook, isLoggedIn }) {
   const [showAddBook, setShowAddBook] = useState(false);
 
   const [myBooks, setMyBooks] = useState([]);
@@ -27,36 +27,41 @@ function MyBooks({ setSelectedBook }) {
           book={book}
           bookType={'my'}
           setSelectedBook={setSelectedBook}
+          isLoggedIn={isLoggedIn}
         />
       );
     });
   };
 
   return (
-    <Container className="border border-3 border-info-subtle rounded">
-      <Row>
-        <Col className="border-end">
-          <Button className="mx-2" onClick={handleShowAddBook}>
-            Add New Book
-          </Button>
+    <Container className="main-container border border-3 border-info-subtle rounded">
+      {/* <Row>
+        <Col>
+          <Button onClick={handleShowAddBook}>Add New Book</Button>
         </Col>
-      </Row>
+      </Row> */}
 
       <Row>
-        <Col className="border-end">
-          <p className="text-start px-2">Title</p>
+        <Col>
+          <h4 className="text-center px-2">Title</h4>
         </Col>
         <Col>
-          <p className="text-start px-2">Author</p>
+          <h4 className="text-center px-2">Author</h4>
         </Col>
         <Col>
-          <p className="text-start px-2">Genre</p>
+          <h4 className="text-center px-2">Genre</h4>
         </Col>
         <Col>
-          <p className="text-start px-2">Add Note</p>
+          <h4 className="text-center px-2">Actions</h4>
         </Col>
       </Row>
       {renderBooks(myBooks)}
+
+      <Row className="p-2">
+        <Col>
+          <Button onClick={handleShowAddBook}>Add New Book</Button>
+        </Col>
+      </Row>
 
       <AddBook show={showAddBook} handleClose={handleCloseAddBook} />
     </Container>

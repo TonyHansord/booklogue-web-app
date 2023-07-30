@@ -26,7 +26,7 @@ function App() {
         } else {
           setUserName('');
           setIsLoggedIn(false);
-          // navigate('/');
+          navigate('/');
         }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,7 +58,7 @@ function App() {
                 setUserName={setUserName}
                 handleLogout={handleLogout}
               />
-              <AllBooks />
+              <AllBooks isLoggedIn={isLoggedIn} />
             </>
           }
         ></Route>
@@ -73,7 +73,7 @@ function App() {
                 handleLogout={handleLogout}
                 userName={userName}
               />
-              <AllBooks />
+              <AllBooks isLoggedIn={isLoggedIn} />
             </>
           }
         ></Route>
@@ -88,7 +88,10 @@ function App() {
                 handleLogout={handleLogout}
                 userName={userName}
               />
-              <MyBooks setSelectedBook={setSelectedBook} />
+              <MyBooks
+                setSelectedBook={setSelectedBook}
+                isLoggedIn={isLoggedIn}
+              />
             </>
           }
         ></Route>

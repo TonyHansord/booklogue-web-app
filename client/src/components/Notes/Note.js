@@ -13,7 +13,7 @@ function Note({ note }) {
 
   return (
     <div className="my-2 p-4 border border-3 border-info-subtle rounded">
-      <h1>{note.subject}</h1>
+      <h4>{note.subject}</h4>
       <p>{note.content}</p>
       <Button onClick={handleDelete} variant="danger">
         Delete Note

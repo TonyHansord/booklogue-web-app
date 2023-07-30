@@ -48,10 +48,10 @@ function BookInfo({ bookID }) {
   };
 
   return (
-    <Container>
+    <Container className="note-container rounded">
       <h1 className="text-left">{bookTitle}</h1>
       <h2 className="text-left">{bookAuthor}</h2>
-      <h3 className="text-left">{bookGenre}</h3>
+      <p className="text-left">{bookGenre}</p>
 
       <Button onClick={handleDelete} variant="danger">
         Delete Book

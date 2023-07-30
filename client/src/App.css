@@ -4,3 +4,41 @@
   padding: 20px;
   color: white;
 }
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+body {
+  background-color: #2f384a;
+}
+
+.main-container,
+.note-container {
+  background-color: #849dcf;
+  padding: 20px 10px;
+  margin-top: 20px;
+}
+
+.main-container {
+  text-align: center;
+}
+
+.nav-col {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  height: 100%;
+}
+
+.nav-col-in {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
