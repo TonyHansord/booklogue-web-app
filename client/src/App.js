@@ -22,11 +22,11 @@ function App() {
         if (data.name) {
           setUserName(data.name);
           setIsLoggedIn(true);
-          navigate('/me');
+          // navigate('/me');
         } else {
           setUserName('');
           setIsLoggedIn(false);
-          navigate('/');
+          // navigate('/');
         }
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps

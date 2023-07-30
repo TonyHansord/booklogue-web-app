@@ -33,7 +33,7 @@ function BookInfo({ bookID }) {
 
   const renderNotes = (notes) => {
     return notes.map((note) => {
-      return <Note key={note.id} note={note} />;
+      return <Note key={note.id} note={note} book={book} />;
     });
   };
 

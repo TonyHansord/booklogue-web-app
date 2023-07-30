@@ -19,8 +19,7 @@ class NotesController < ApplicationController
   end
 
   def update
-    book = get_book
-    note = book.notes.find(params[:id])
+    note = Note.find(params[:note_id])
     note.update(note_params)
     render json: note
   end

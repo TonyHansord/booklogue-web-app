@@ -1,9 +1,48 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-function AddNote({ book, handleClose, show }) {
+function AddNote({ book, handleClose, show, note }) {
   const [subject, setSubject] = useState('');
   const [content, setContent] = useState('');
+  const [errormessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleResponse = (res) => {
+    console.log(res.status);
+    if (res.status === 201 || 200) {
+      res.json().then((data) => {
+        handleClose();
+      });
+    } else {
+      res.json().then((data) => {
+        console.log(data.errors[0]);
+        setErrorMessage(data.errors[0]);
+      });
+    }
+  };
+
+  function handleEdit(e) {
+    e.preventDefault();
+    fetch(`/me/notes/${note.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        book_id: book.id,
+        subject: subject,
+        content: content,
+      }),
+    }).then((res) => {
+      console.log(res.json());
+      handleResponse(res);
+      if (res.ok) {
+        window.location.reload();
+      }
+    });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,21 +57,19 @@ function AddNote({ book, handleClose, show }) {
         subject: subject,
         content: content,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        handleClose();
-      });
+    }).then((res) => {
+      handleResponse(res);
+    });
   };
 
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Note</Modal.Title>
+          <Modal.Title>{note ? 'Edit Note' : 'Add Note'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form noValidate onSubmit={note ? handleEdit : handleSubmit}>
             <Form.Group controlId="formNoteSubject">
               <Form.Label>Subject</Form.Label>
               <Form.Control
@@ -58,11 +95,11 @@ function AddNote({ book, handleClose, show }) {
               />
             </Form.Group>
 
-            {/* <p className="error">{errormessage}</p> */}
+            {<p className="error">{errormessage}</p>}
 
             <div>
               <Button variant="secondary" type="submit">
-                Add Note
+                {note ? 'Edit Note' : 'Add Note'}
               </Button>
               <Button variant="primary" onClick={handleClose}>
                 Cancel
