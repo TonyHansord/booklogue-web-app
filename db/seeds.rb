@@ -6,9 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Author.destroy_all
 Genre.destroy_all
-Book.destroy_all
 
 puts "🌱 Seeding Genres"
 
